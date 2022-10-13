@@ -95,14 +95,17 @@ scene.add(pointLight, ambientLight);
 
 // Background
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+const spaceTexture = new THREE.TextureLoader().load('background.jpg');
 scene.background = spaceTexture;
+console.log("background " + spaceTexture.offset.x );
+
+window.addEventListener( 'resize', onWindowResize );
 
 // Avatar
 
-const jeffTexture = new THREE.TextureLoader().load('jeff.png');
+// const jeffTexture = new THREE.TextureLoader().load('jeff.png');
 
-const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
+// const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
 
 // scene.add(jeff);
 
@@ -156,6 +159,11 @@ function moveCamera() {
 
   plane03Mesh.position.z = t* +0.02;
 
+  spaceTexture.center.x = 0.5;
+  spaceTexture.center.y = 0.5;
+  spaceTexture.rotation -= 0.0002;
+
+
 
 
   // console.log(plane01.position);
@@ -180,11 +188,25 @@ function animate() {
   //plane沿Z轴自旋转
   plane01Mesh.rotation.z += -0.02;
 
+  spaceTexture.rotation -= 0.0002;
+
+
   // moon.rotation.x += 0.005;
 
   // controls.update();
 
   renderer.render(scene, camera);
+}
+
+function onWindowResize() {
+
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize( window.innerWidth, window.innerHeight );
+
+  renderer.render(scene, camera);
+
 }
 
 animate();
