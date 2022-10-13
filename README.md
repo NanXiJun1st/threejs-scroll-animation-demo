@@ -10,3 +10,7 @@ git clone <this-repo>
 npm install
 npm run dev
 ```
+
+
+## 在线预览
+[codesandbox.io](https://codesandbox.io/p/github/NanXiJun1st/threejs-scroll-animation-demo/draft/distracted-marco?file=%2Fmain.js)
