@@ -26,9 +26,9 @@ renderer.render(scene, camera);
 
 // Torus
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
-const torus = new THREE.Mesh(geometry, material);
+// const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+// const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
+// const torus = new THREE.Mesh(geometry, material);
 
 // scene.add(torus);
 
@@ -51,7 +51,6 @@ const plane02Mesh = new THREE.Mesh(plane02, materialPlane02);
 plane02Mesh.position.set(plane02MeshX,plane02MeshY,-10); 
 plane02Mesh.quaternion.set(0,0,0,0);
 
-
 scene.add(plane02Mesh);
 
 
@@ -60,7 +59,6 @@ const materialPlane03 = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
 const plane03Mesh = new THREE.Mesh(plane03, materialPlane03);
 plane03Mesh.position.set(plane03MeshX,plane03MeshY,0); 
 plane03Mesh.quaternion.set(0,0,0,0);
-
 
 scene.add(plane03Mesh);
 
@@ -80,20 +78,20 @@ scene.add(pointLight, ambientLight);
 
 // const controls = new OrbitControls(camera, renderer.domElement);
 
-function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-  const star = new THREE.Mesh(geometry, material);
+// function addStar() {
+//   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
+//   const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+//   const star = new THREE.Mesh(geometry, material);
 
-  const [x, y, z] = Array(3)
-    .fill()
-    .map(() => THREE.MathUtils.randFloatSpread(100));
+//   const [x, y, z] = Array(3)
+//     .fill()
+//     .map(() => THREE.MathUtils.randFloatSpread(100));
 
-  star.position.set(x, y, z);
-  scene.add(star);
-}
+//   star.position.set(x, y, z);
+//   scene.add(star);
+// }
 
-Array(200).fill().forEach(addStar);
+// Array(200).fill().forEach(addStar);
 
 // Background
 
@@ -110,37 +108,38 @@ const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicM
 
 // Moon
 
-const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+// const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
-const moon = new THREE.Mesh(
-  new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
-    map: moonTexture,
-    normalMap: normalTexture,
-  })
-);
+// const moon = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: moonTexture,
+//     normalMap: normalTexture,
+//   })
+// );
 
-scene.add(moon);
+// scene.add(moon);
 
-moon.position.z = 30;
-moon.position.setX(-10);
+// moon.position.z = 30;
+// moon.position.setX(-10);
 
-jeff.position.z = -5;
-jeff.position.x = 2;
+// jeff.position.z = -5;
+// jeff.position.x = 2;
 
 
 // Scroll Animation
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
-  moon.rotation.x += 0.05;
-  moon.rotation.y += 0.075;
-  moon.rotation.z += 0.05;
+  // moon.rotation.x += 0.05;
+  // moon.rotation.y += 0.075;
+  // moon.rotation.z += 0.05;
 
-  jeff.rotation.y += 0.01;
-  jeff.rotation.z += 0.01;
+  // jeff.rotation.y += 0.01;
+  // jeff.rotation.z += 0.01;
 
+  //根据页面滚动的距离实时更新plane的位置信息
   plane01Mesh.position.x = 30 + (t* -0.06);
   plane01Mesh.position.z = t* +0.02;
 
@@ -174,13 +173,14 @@ moveCamera();
 function animate() {
   requestAnimationFrame(animate);
 
-  torus.rotation.x += 0.01;
-  torus.rotation.y += 0.005;
-  torus.rotation.z += 0.01;
+  // torus.rotation.x += 0.01;
+  // torus.rotation.y += 0.005;
+  // torus.rotation.z += 0.01;
 
-  plane01Mesh.rotation.z += -0.01;
+  //plane沿Z轴自旋转
+  plane01Mesh.rotation.z += -0.02;
 
-  moon.rotation.x += 0.005;
+  // moon.rotation.x += 0.005;
 
   // controls.update();
 
